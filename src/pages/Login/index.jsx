@@ -51,7 +51,7 @@ export const Login = () => {
     <Paper classes={{ root: styles.root }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Typography classes={{ root: styles.title }} variant="h5">
-          Вход в аккаунт
+          Вхід в аккаунт
         </Typography>
         <TextField
           className={styles.field}
@@ -73,14 +73,8 @@ export const Login = () => {
         />
         <input type="checkbox" onClick={handleShowPassword} />{" "}
         <span>Показати пароль</span>
-        <Button
-          disabled={!isValid}
-          type="submit"
-          size="large"
-          variant="contained"
-          fullWidth
-        >
-          Войти
+        <Button type="submit" size="large" variant="contained" fullWidth>
+          Ввійти
         </Button>
       </form>
     </Paper>
