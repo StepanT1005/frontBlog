@@ -127,6 +127,9 @@ export const AddPost = () => {
           />
         </>
       )}
+      {console.log(process.env.REACT_APP_API_URL)}
+      {console.log(imageUrl)}
+
       <br />
       <br />
       <TextField

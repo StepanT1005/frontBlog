@@ -46,7 +46,6 @@ export const Login = () => {
       ? setPasswordVisibility("none")
       : setPasswordVisibility("password");
   };
-  console.log("isAuth", isAuth);
   return (
     <Paper classes={{ root: styles.root }}>
       <form onSubmit={handleSubmit(onSubmit)}>
