@@ -17,7 +17,6 @@ export const FullPost = () => {
   const { id } = useParams();
   const [isCommentPublicated, setIsCommentPublicated] = useState(false);
   const isAuth = useSelector(selectIsAuth);
-  console.log(isAuth);
 
   useEffect(() => {
     axios
