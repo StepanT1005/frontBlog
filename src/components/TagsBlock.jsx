@@ -16,23 +16,23 @@ export const TagsBlock = ({ items, isLoading = true }) => {
     <SideBlock title="Теги">
       <List>
         {(isLoading ? [...Array(5)] : items).map((name, i) => (
-          <Link
-            style={{ textDecoration: "none", color: "black" }}
-            to={`/tags/${name}`}
-          >
-            <ListItem key={i} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <TagIcon />
-                </ListItemIcon>
-                {isLoading ? (
-                  <Skeleton width={100} />
-                ) : (
-                  <ListItemText primary={name} />
-                )}
-              </ListItemButton>
-            </ListItem>
-          </Link>
+          // <Link
+          //   style={{ textDecoration: "none", color: "black" }}
+          //   to={`/tags/${name}`}
+          // >
+          <ListItem key={i} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <TagIcon />
+              </ListItemIcon>
+              {isLoading ? (
+                <Skeleton width={100} />
+              ) : (
+                <ListItemText primary={name} />
+              )}
+            </ListItemButton>
+          </ListItem>
+          // </Link>
         ))}
       </List>
     </SideBlock>
