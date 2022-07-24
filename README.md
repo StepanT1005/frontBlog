@@ -1,2 +1,16 @@
-link 2 project:
-https://coctail-blog.vercel.app/
+<b>Fullstack blog app</b><br>
+
+Front-end link:<br>
+https://coctail-blog.vercel.app/<br>
+Technology Stack<br>
+
+<ul>
+<li>React</li>
+<li>NodeJs</li>
+<li>Express</li>
+<li>MongoDB</li>
+<li>JWT</li>
+<li>And other</li>
+</ul>
+Back-end link:<br>
+https://github.com/StepanT1005/blogBackend
