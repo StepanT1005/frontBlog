@@ -25,7 +25,7 @@ export const Home = () => {
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         )
       : Boolean(tag)
-      ? posts.items.filter((el) => el.tags.includes(tag))
+      ? posts.items.filter((el) => el.tags.join(" ").includes(tag))
       : [...posts.items].sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
