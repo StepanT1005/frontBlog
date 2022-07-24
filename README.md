@@ -13,4 +13,16 @@ Technology Stack<br>
 <li>And other</li>
 </ul>
 Back-end link:<br>
-https://github.com/StepanT1005/blogBackend
+https://github.com/StepanT1005/blogBackend<br>
+
+In this app you can:<br>
+
+<ul>
+<li>Read post about cocktails</li>
+<li>Filter post by tag/popular/new</li>
+<li>Register/ Auth</li>
+<li>Add comment</li>
+<li>Create/Delete post</li></br>
+</ul>
+For report:</br>
+Telegram -- @StepanT77
