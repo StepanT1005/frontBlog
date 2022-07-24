@@ -24,7 +24,7 @@ export const Registration = () => {
       password: "",
       avatarUrl: "",
     },
-    mode: onchange,
+    mode: "onChange",
   });
   const onSubmit = async (values) => {
     const isEmpty = (str) => !str.trim(" ");
