@@ -32,7 +32,7 @@ export const Registration = () => {
       values.avatarUrl =
         "https://cdn-icons-png.flaticon.com/512/2644/2644580.png";
     }
-    if (!isValid) return;
+    if (!isValid) return alert("Один або декілька параметрів невалідні");
     const data = await dispatch(fetchRegister(values));
     if (!data.payload) {
       return alert("Не вдалось зареєструватись");
@@ -88,7 +88,13 @@ export const Registration = () => {
           label="Пароль"
           fullWidth
         />
-        <Button type="sumbit" size="large" variant="contained" fullWidth>
+        <Button
+          type="sumbit"
+          size="large"
+          variant="contained"
+          fullWidth
+          disabled={!isValid}
+        >
           Зареєструватись
         </Button>
       </form>
