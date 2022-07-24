@@ -27,6 +27,11 @@ export const Registration = () => {
     mode: onchange,
   });
   const onSubmit = async (values) => {
+    const isEmpty = (str) => !str.trim(" ");
+    if (isEmpty(values.avatarUrl)) {
+      values.avatarUrl =
+        "https://cdn-icons-png.flaticon.com/512/2644/2644580.png";
+    }
     if (!isValid) return;
     const data = await dispatch(fetchRegister(values));
     if (!data.payload) {

@@ -29,7 +29,7 @@ export const FullPost = () => {
         console.warn(err);
         alert("Помилка при отриманні статті");
       });
-    setIsCommentPublicated(false);
+    return () => setIsCommentPublicated(false);
   }, [isCommentPublicated]);
 
   if (isLoading) {
