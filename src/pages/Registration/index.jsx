@@ -64,10 +64,10 @@ export const Registration = () => {
         <TextField
           error={Boolean(errors.fullName?.message)}
           helperText={errors.fullName?.message}
-          {...register("fullName", { required: "Вкажіть і'мя та фамілію" })}
+          {...register("fullName", { required: "Вкажіть Ім'я або нікнейм" })}
           type="text"
           className={styles.field}
-          label="Повне ім'я"
+          label="Ім'я або нікнейм"
           fullWidth
         />
         <TextField
