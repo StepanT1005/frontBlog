@@ -29,8 +29,15 @@ export const AddPost = () => {
       const formData = new FormData();
       const file = event.target.files[0];
       formData.append("image", file);
-
-      const { data } = await axios.post("/upload", formData);
+      const res = await fetch(
+        `https://api.imgbb.com/1/upload?expiration=600&key=${process.env.REACT_APP_IMG_API_URL}`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const { data } = await res.json();
+      // const { data } = await axios.post("/upload", formData);
       setImageUrl(data.url);
     } catch (err) {
       console.warn(err);
@@ -120,11 +127,7 @@ export const AddPost = () => {
           >
             Видалити
           </Button>
-          <img
-            className={styles.image}
-            src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
-            alt="Uploaded"
-          />
+          <img className={styles.image} src={imageUrl} alt="Uploaded" />
         </>
       )}
       <br />
