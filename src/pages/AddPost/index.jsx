@@ -30,7 +30,7 @@ export const AddPost = () => {
       const file = event.target.files[0];
       formData.append("image", file);
       const res = await fetch(
-        `https://api.imgbb.com/1/upload?expiration=600&key=${process.env.REACT_APP_IMG_API_URL}`,
+        `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMG_API_URL}`,
         {
           method: "POST",
           body: formData,
