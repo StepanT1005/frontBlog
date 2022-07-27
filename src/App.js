@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:sort" element={<Home />} />
-          <Route path="/tags/:tag" element={<Home />} />
+          <Route path="/tag/:tag" element={<Home />} />
           <Route path="/sort/:direction" element={<Home />} />
           <Route path="/posts/:id" element={<FullPost />} />
           <Route path="/posts/:id/edit" element={<AddPost />} />
