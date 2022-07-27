@@ -57,7 +57,7 @@ export const AddPost = () => {
       axios.get(`/posts/${id}`).then(({ data }) => {
         setTitle(data.title);
         setText(data.text);
-        setTags(data.tags.join(","));
+        setTags(data.tags.join(" "));
         setImageUrl(data.imageUrl);
       });
     }
