@@ -13,8 +13,6 @@ Technology Stack<br>
 <li>NodeJs</li>
 <li>Express</li>
 <li>MongoDB</li>
-<li>JWT</li>
-<li>And other</li>
 </ul>
 
 In this app you can:<br>
