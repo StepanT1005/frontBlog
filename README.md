@@ -2,6 +2,10 @@
 
 Front-end link:<br>
 https://coctail-blog.vercel.app/<br>
+
+Back-end link:<br>
+https://github.com/StepanT1005/blogBackend<br>
+
 Technology Stack<br>
 
 <ul>
@@ -12,8 +16,6 @@ Technology Stack<br>
 <li>JWT</li>
 <li>And other</li>
 </ul>
-Back-end link:<br>
-https://github.com/StepanT1005/blogBackend<br>
 
 In this app you can:<br>
 
