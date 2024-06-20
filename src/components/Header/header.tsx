@@ -1,19 +1,15 @@
-import Button from "@mui/material/Button";
-
-import styles from "./Header.module.scss";
-import Container from "@mui/material/Container";
+import { Button, Container } from "@mui/material/";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { logout, selectIsAuth } from "../../redux/slices/auth";
+import styles from "./header.module.scss";
+import { useAppDispatch, useAppSelector, getIsAuth, clearUser } from "@/redux";
 
-const Header: React.FC = () => {
-  const dispatch = useDispatch();
-
-  const isAuth = useSelector(selectIsAuth);
+export const Header = () => {
+  const dispatch = useAppDispatch();
+  const isAuth = useAppSelector(getIsAuth);
 
   const onClickLogout = () => {
-    if (window.confirm("Ви впевнені, що бажаєте вийти?")) {
-      dispatch(logout());
+    if (window.confirm("Are you sure you want to log out?")) {
+      dispatch(clearUser());
       window.localStorage.removeItem("token");
     }
   };
@@ -23,29 +19,29 @@ const Header: React.FC = () => {
       <Container maxWidth="lg">
         <div className={styles.inner}>
           <Link className={styles.logo} to="/">
-            <div>Cocktails blog</div>
+            <div>Blog</div>
           </Link>
           <div className={styles.buttons}>
             {isAuth ? (
               <>
                 <Link to="/add-post">
-                  <Button variant="contained">Створити статтю</Button>
+                  <Button variant="contained">Create Post</Button>
                 </Link>
                 <Button
                   onClick={onClickLogout}
                   variant="contained"
                   color="error"
                 >
-                  Вийти
+                  Log Out
                 </Button>
               </>
             ) : (
               <>
                 <Link to="/login">
-                  <Button variant="outlined">Логін</Button>
+                  <Button variant="outlined">Login</Button>
                 </Link>
                 <Link to="/register">
-                  <Button variant="contained">Створити аккаут</Button>
+                  <Button variant="contained">Create Account</Button>
                 </Link>
               </>
             )}

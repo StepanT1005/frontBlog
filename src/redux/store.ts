@@ -1,11 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { authReducer } from "./slices/auth";
-import { postsReducer } from "./slices/posts";
+import postsReducer from "./stores/posts/posts.slice";
+import userReducer from "./stores/user/user.slice";
+import postReducer from "./stores/post/post.slice";
+import commentsReducer from "./stores/comments/comments.slice";
+
+export type AppStore = typeof store;
+export type RootState = ReturnType<AppStore["getState"]>;
+export type AppDispatch = AppStore["dispatch"];
 
 const store = configureStore({
   reducer: {
+    user: userReducer,
+    post: postReducer,
     posts: postsReducer,
-    auth: authReducer,
+    comments: commentsReducer,
   },
 });
 

@@ -5,38 +5,58 @@ import DeleteIcon from "@mui/icons-material/Clear";
 import EditIcon from "@mui/icons-material/Edit";
 import EyeIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import CommentIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
-
-import styles from "./Post.module.scss";
-import { UserInfo } from "../UserInfo";
-import { PostSkeleton } from "./Skeleton";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { fetchRemovePost } from "../../redux/slices/posts";
+import { useAppDispatch, fetchRemovePost } from "@/redux";
 
-export const Post = ({
-  id,
-  title,
-  createdAt,
-  imageUrl,
-  user,
-  viewsCount,
-  commentsCount,
-  tags,
-  children,
-  isFullPost,
-  isLoading,
-  isEditable,
-}) => {
-  const dispatch = useDispatch();
+import { UserInfo } from "../UserInfo/user-info";
+import { PostSkeleton } from "./post-skeleton";
+
+import styles from "./post.module.scss";
+
+type PostProps = {
+  id: string;
+  title: string;
+  createdAt: string;
+  imageUrl?: string;
+  user: {
+    avatarUrl?: string;
+    username: string;
+  };
+  viewsCount: number;
+  commentsCount?: number;
+  tags: string[];
+  children?: React.ReactNode;
+  isFullPost?: boolean;
+  isLoading?: boolean;
+  isEditable?: boolean;
+};
+
+export const Post = (props: PostProps) => {
+  const {
+    id,
+    title,
+    createdAt,
+    imageUrl,
+    user,
+    viewsCount,
+    commentsCount = 0,
+    tags,
+    children,
+    isFullPost = false,
+    isLoading,
+    isEditable,
+  } = props;
+  const dispatch = useAppDispatch();
+
+  const onClickRemove = () => {
+    if (window.confirm("Are you sure you want to delete the article?")) {
+      dispatch(fetchRemovePost(id));
+    }
+  };
 
   if (isLoading) {
     return <PostSkeleton />;
   }
-  const onClickRemove = () => {
-    if (window.confirm("Ви впевнені, що бажаєте видалити статтю?")) {
-      dispatch(dispatch(fetchRemovePost(id)));
-    }
-  };
 
   return (
     <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
