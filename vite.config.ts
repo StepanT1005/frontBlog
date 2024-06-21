@@ -5,6 +5,7 @@ export default defineConfig({
   plugins: [react()],
   define: {
     __APP_VERSION__: JSON.stringify(process.env.npm_package_version),
+    __APP_ENV__: process.env.VITE_VERCEL_ENV,
   },
   resolve: {
     alias: [{ find: "@", replacement: "/src" }],
