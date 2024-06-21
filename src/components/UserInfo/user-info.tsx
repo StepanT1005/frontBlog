@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./user-ifno.module.scss";
 
 type UserInfoProps = {
@@ -8,18 +9,21 @@ type UserInfoProps = {
 
 export const UserInfo = (props: UserInfoProps) => {
   const { avatarUrl, username, additionalText } = props;
+  const [imgSrc, setImgSrc] = useState(avatarUrl || "/noavatar.png");
 
-  const finalAvatarUrl = avatarUrl || "/noavatar.png";
+  const handleError = () => {
+    if (imgSrc !== "/noavatar.png") {
+      setImgSrc("/noavatar.png");
+    }
+  };
 
   return (
     <div className={styles.root}>
       <img
         className={styles.avatar}
-        src={finalAvatarUrl}
+        src={imgSrc}
         alt={username}
-        onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) =>
-          (event.currentTarget.src = "/noavatar.png")
-        }
+        onError={handleError}
       />
       <div className={styles.userDetails}>
         <span className={styles.userName}>{username}</span>
