@@ -10,11 +10,11 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import styles from "./login.module.scss";
 import client from "../../api/api";
 import { fetchUserData } from "../../redux/stores/user/user.slice";
 import { useAppDispatch, useAppSelector } from "../../redux/redux.hooks";
 import { getIsAuth } from "../../redux/stores/user/user.selector";
+import styles from "./login.module.scss";
 
 interface FormData {
   email: string;

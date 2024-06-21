@@ -27,7 +27,8 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "strictNullChecks": true,
-    "noImplicitThis": true
+    "noImplicitThis": true,
+    "typeRoots": ["./types", "./node_modules/@types"]
   },
   "include": ["src", "./.d.ts", "./vite-env.d.ts"],
   "exclude": ["node_modules", "dist"],
