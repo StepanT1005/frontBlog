@@ -63,6 +63,7 @@ export const Post = (props: PostProps) => {
 
   return (
     <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
+      <UserInfo {...user} />
       {isEditable && (
         <div className={styles.editButtons}>
           <Link to={`/posts/${id}/edit`}>
@@ -85,7 +86,6 @@ export const Post = (props: PostProps) => {
         />
       )}
       <div className={styles.wrapper}>
-        <UserInfo {...user} />
         <div className={styles.indention}>
           <h2
             className={clsx(styles.title, { [styles.titleFull]: isFullPost })}
@@ -108,6 +108,9 @@ export const Post = (props: PostProps) => {
               <span>{commentsCount}</span>
             </li>
           </ul>
+          <div className={styles.dateComponent}>
+            {new Date(createdAt).toLocaleDateString()}
+          </div>
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ $blue: #4361ee;
   overflow: hidden;
   margin-bottom: 15px;
   position: relative;
+  padding: 15px;
 
   &:hover {
     border: 1px solid $blue;
@@ -30,6 +31,7 @@ $blue: #4361ee;
   width: 100%;
   height: 300px;
   object-fit: cover;
+  margin: 16px 0;
 
   &Full {
     min-height: 300px;
@@ -38,7 +40,6 @@ $blue: #4361ee;
 }
 
 .wrapper {
-  padding: 10px 20px 20px;
 }
 
 .content {
@@ -51,7 +52,7 @@ $blue: #4361ee;
 }
 
 .indention {
-  padding-left: 40px;
+  padding-left: 20px;
 }
 
 .title {
@@ -155,4 +156,11 @@ $blue: #4361ee;
   border-radius: 10px;
   opacity: 0;
   transition: all 0.15s ease-in-out;
+}
+
+.dateComponent {
+  opacity: 0.5;
+  margin-left: auto;
+  width: 100px;
+  margin-left: auto;
 }

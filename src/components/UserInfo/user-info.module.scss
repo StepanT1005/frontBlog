@@ -12,15 +12,11 @@
 
 .userName {
   font-weight: 500;
-  font-size: 14px;
+  font-size: 24px;
 }
 
 .userDetails {
   display: flex;
   flex-direction: column;
-}
-
-.additional {
-  font-size: 12px;
-  opacity: 0.6;
+  margin-left: 15px;
 }
