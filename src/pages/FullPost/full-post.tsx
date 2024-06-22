@@ -17,6 +17,7 @@ export const FullPost = () => {
 
   const dispatch = useAppDispatch();
   const { isLoading, postData } = useAppSelector((state) => state.post);
+  const currentUserId = useAppSelector((state) => state.user?.userData?._id);
 
   const comments = useAppSelector((state) => state.comments.comments);
   const isCommentsLoading = useAppSelector((state) => state.comments.isLoading);
@@ -46,7 +47,7 @@ export const FullPost = () => {
         tags={postData.tags}
         isFullPost
         isLoading={isLoading}
-        isEditable={false}
+        isEditable={currentUserId === postData.user._id}
       >
         <ReactMarkdown>{postData.text}</ReactMarkdown>
       </Post>

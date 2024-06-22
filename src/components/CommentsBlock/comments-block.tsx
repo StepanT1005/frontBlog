@@ -11,6 +11,7 @@ import {
 } from "@mui/material/";
 import { Link } from "react-router-dom";
 import { Comment } from "@/redux";
+import { DEFAULT_AVATAR } from "@/api/api";
 
 type CommentsBlockProps = {
   items?: Comment[];
@@ -42,7 +43,10 @@ export const CommentsBlock = (props: CommentsBlockProps) => {
                 {isLoading ? (
                   <Skeleton variant="circular" width={40} height={40} />
                 ) : (
-                  <Avatar alt={obj.user.username} src={obj.user.avatarUrl} />
+                  <Avatar
+                    alt={obj.user.username}
+                    src={obj.user.avatarUrl || DEFAULT_AVATAR}
+                  />
                 )}
               </ListItemAvatar>
               {isLoading ? (

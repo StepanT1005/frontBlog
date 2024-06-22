@@ -6,7 +6,7 @@ import { PaginationData, PostsState } from "./posts.types";
 export const fetchPosts = createAppAsyncThunk(
   "posts/fetchPosts",
   async (paginationData: PaginationData, thunkAPI) => {
-    const { page, limit, sortOrder } = paginationData;
+    const { page = 1, limit = 10, sortOrder = "new" } = paginationData;
     try {
       const { data } = await client.get("/posts", {
         params: {

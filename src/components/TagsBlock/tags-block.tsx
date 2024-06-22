@@ -31,16 +31,19 @@ export const TagsBlock = (props: TagsBlockProps) => {
                 </ListItemButton>
               </ListItem>
             ))
-          : items?.map((name) => (
-              <ListItem key={name} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <TagIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={name} />
-                </ListItemButton>
-              </ListItem>
-            ))}
+          : items?.map((name, index) => {
+              return (
+                //// need to update key after resolve backend problem with tags
+                <ListItem key={name + index} disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <TagIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={name} />
+                  </ListItemButton>
+                </ListItem>
+              );
+            })}
       </List>
     </SideBlock>
   );

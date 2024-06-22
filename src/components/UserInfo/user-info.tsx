@@ -1,33 +1,21 @@
-import { useState } from "react";
 import styles from "./user-ifno.module.scss";
+import { DEFAULT_AVATAR } from "@/api/api";
+import { Avatar } from "@mui/material";
 
 type UserInfoProps = {
   avatarUrl?: string;
   username: string;
-  additionalText: string;
 };
 
 export const UserInfo = (props: UserInfoProps) => {
-  const { avatarUrl, username, additionalText } = props;
-  const [imgSrc, setImgSrc] = useState(avatarUrl || "/noavatar.png");
-
-  const handleError = () => {
-    if (imgSrc !== "/noavatar.png") {
-      setImgSrc("/noavatar.png");
-    }
-  };
-
+  const { avatarUrl, username } = props;
+  console.log(avatarUrl);
   return (
     <div className={styles.root}>
-      <img
-        className={styles.avatar}
-        src={imgSrc}
-        alt={username}
-        onError={handleError}
-      />
+      <Avatar alt={username} src={avatarUrl || DEFAULT_AVATAR} />
+
       <div className={styles.userDetails}>
         <span className={styles.userName}>{username}</span>
-        <span className={styles.additional}>{additionalText}</span>
       </div>
     </div>
   );

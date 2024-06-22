@@ -4,7 +4,7 @@ import { TextField, Avatar, Button } from "@mui/material/";
 import styles from "./add-comment.module.scss";
 import { useAppSelector } from "@/redux";
 import io, { Socket } from "socket.io-client";
-import client, { BASE_URL } from "@/api/api";
+import client, { BASE_URL, DEFAULT_AVATAR } from "@/api/api";
 
 type AddCommentProps = {
   postId: string;
@@ -45,7 +45,10 @@ export const AddComment = (props: AddCommentProps) => {
   return (
     <>
       <div className={styles.root}>
-        <Avatar classes={{ root: styles.avatar }} src={userData?.avatarUrl} />
+        <Avatar
+          classes={{ root: styles.avatar }}
+          src={userData?.avatarUrl || DEFAULT_AVATAR}
+        />
         <div className={styles.form}>
           <div>
             <TextField

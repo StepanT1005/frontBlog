@@ -65,7 +65,7 @@ const AddEditPost = () => {
       formData.append("image", file);
       const { data } = await client.post("/upload", formData);
 
-      setImageUrl(`${BASE_URL}${data.url}`);
+      setImageUrl(data.url);
     } catch (error) {
       console.warn(error);
       alert("Error uploading file");
@@ -126,7 +126,11 @@ const AddEditPost = () => {
           >
             Remove
           </Button>
-          <img className={styles.image} src={imageUrl} alt="Uploaded" />
+          <img
+            className={styles.image}
+            src={`${BASE_URL}/${imageUrl}`}
+            alt="Uploaded"
+          />
         </>
       )}{" "}
       <TextField

@@ -19,7 +19,7 @@ export const fetchRemovePost = createAppAsyncThunk(
   "posts/fetchRemovePost",
   async (id: string, thunkApi) => {
     try {
-      await client.delete(`posts/:${id}`);
+      await client.delete(`posts/${id}`);
     } catch (error) {
       return thunkApi.rejectWithValue(error);
     }
