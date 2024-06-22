@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Tabs, Tab, Grid } from "@mui/material";
-
 import {
   useAppDispatch,
   useAppSelector,
@@ -19,14 +18,15 @@ const Home = () => {
     dispatch(fetchPosts({ page: currentPage, sortOrder, limit }));
   }, [dispatch, currentPage, sortOrder, limit]);
 
+  const handleChangeSortOrder = (order: string) => {
+    dispatch(setSortOrder(order));
+  };
+
   return (
     <>
       <Tabs value={sortOrder === "new" ? 0 : 1} aria-label="basic tabs example">
-        <Tab label="New" onClick={() => dispatch(setSortOrder("new"))} />
-        <Tab
-          label="Popular"
-          onClick={() => dispatch(setSortOrder("popular"))}
-        />
+        <Tab label="New" onClick={() => handleChangeSortOrder("new")} />
+        <Tab label="Popular" onClick={() => handleChangeSortOrder("popular")} />
       </Tabs>
       <Grid container spacing={4}>
         <Grid item xs={8}>

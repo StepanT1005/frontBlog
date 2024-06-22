@@ -89,7 +89,7 @@ const AddEditPost = () => {
       spellChecker: false,
       maxHeight: "400px",
       autofocus: true,
-      placeholder: "Введіть текст...",
+      placeholder: "Enter text...",
       status: false,
       autosave: {
         enabled: true,

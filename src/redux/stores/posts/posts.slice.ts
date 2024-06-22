@@ -12,7 +12,7 @@ export const fetchPosts = createAppAsyncThunk(
         params: {
           page,
           limit,
-          order: sortOrder,
+          sort: sortOrder,
         },
       });
       return data;
