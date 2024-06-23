@@ -13,7 +13,7 @@ export const UserInfo = (props: UserInfoProps) => {
     <div className={styles.root}>
       <Avatar
         alt={username}
-        src={`${BASE_URL}/${avatarUrl}` || DEFAULT_AVATAR}
+        src={`${BASE_URL}${avatarUrl}` || DEFAULT_AVATAR}
       />
 
       <div className={styles.userDetails}>

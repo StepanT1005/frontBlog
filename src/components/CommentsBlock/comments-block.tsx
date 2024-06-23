@@ -45,7 +45,7 @@ export const CommentsBlock = (props: CommentsBlockProps) => {
                 ) : (
                   <Avatar
                     alt={obj.user.username}
-                    src={`${BASE_URL}/${obj.user.avatarUrl}` || DEFAULT_AVATAR}
+                    src={`${BASE_URL}${obj.user.avatarUrl}` || DEFAULT_AVATAR}
                   />
                 )}
               </ListItemAvatar>
