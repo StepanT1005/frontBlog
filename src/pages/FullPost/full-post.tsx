@@ -11,6 +11,7 @@ import {
 } from "@/redux";
 import { Skeleton } from "@mui/material";
 import useSocket from "@/hooks/use-socket";
+import styles from "./full-post.module.scss";
 
 export const FullPost = () => {
   const { postId } = useParams<{ postId: string }>();
@@ -49,7 +50,9 @@ export const FullPost = () => {
         isLoading={isLoading}
         isEditable={currentUserId === postData.user._id}
       >
-        <ReactMarkdown>{postData.text}</ReactMarkdown>
+        <ReactMarkdown className={styles.markdown}>
+          {postData.text}
+        </ReactMarkdown>
       </Post>
       <CommentsBlock items={comments} isLoading={isCommentsLoading} />
       {isAuth && <AddComment postId={postData._id} />}

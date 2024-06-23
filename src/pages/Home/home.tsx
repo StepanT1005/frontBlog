@@ -7,6 +7,7 @@ import {
   setSortOrder,
 } from "@/redux";
 import { Post, PostSkeleton, Sidebar } from "@/components";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -35,18 +36,19 @@ const Home = () => {
                 <PostSkeleton key={index} />
               ))
             : postsData.map((post) => (
-                <Post
-                  key={post._id}
-                  id={post._id}
-                  title={post.title}
-                  imageUrl={post.imageUrl || ""}
-                  user={post.user}
-                  createdAt={post.createdAt}
-                  viewsCount={post.viewsCount}
-                  commentsCount={post.comments?.length}
-                  tags={post.tags}
-                  isEditable={currentUserId === post.user._id}
-                />
+                <Link to={`/posts/${post._id}`} key={post._id}>
+                  <Post
+                    id={post._id}
+                    title={post.title}
+                    imageUrl={post.imageUrl || ""}
+                    user={post.user}
+                    createdAt={post.createdAt}
+                    viewsCount={post.viewsCount}
+                    commentsCount={post.comments?.length}
+                    tags={post.tags}
+                    isEditable={currentUserId === post.user._id}
+                  />
+                </Link>
               ))}
         </Grid>
         <Sidebar />

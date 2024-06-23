@@ -20,7 +20,6 @@ function App() {
 
   useEffect(() => {
     if (token) {
-      console.log(token);
       dispatch(fetchUserData());
     }
   }, [dispatch, token]);

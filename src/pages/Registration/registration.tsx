@@ -9,7 +9,7 @@ import {
   Avatar,
   IconButton,
 } from "@mui/material";
-import { PhotoCamera } from "@mui/icons-material";
+import { PhotoCamera, Close } from "@mui/icons-material";
 import styles from "./registration.module.scss";
 import client from "@/api/api";
 import {
@@ -26,7 +26,9 @@ type FormData = {
   password: string;
 };
 
-export const Registration: React.FC = () => {
+const allowedMimeTypes = ["image/jpeg", "image/png", "image/gif"];
+
+const Registration = () => {
   const isAuth = useAppSelector(getIsAuth);
   const dispatch = useAppDispatch();
   const {
@@ -43,6 +45,7 @@ export const Registration: React.FC = () => {
   });
 
   const [avatar, setAvatar] = useState<File | null>(null);
+  const [avatarError, setAvatarError] = useState<string | null>(null);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     if (!isValid) {
@@ -73,7 +76,13 @@ export const Registration: React.FC = () => {
 
   const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
-    setAvatar(file);
+    if (file && !allowedMimeTypes.includes(file.type)) {
+      setAvatarError("Invalid file type. Only JPEG, PNG, and GIF are allowed.");
+      setAvatar(null);
+    } else {
+      setAvatarError(null);
+      setAvatar(file);
+    }
   };
 
   if (isAuth) {
@@ -86,28 +95,45 @@ export const Registration: React.FC = () => {
         Create Account
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.avatar}>
-          <input
-            accept="image/*"
-            style={{ display: "none" }}
-            id="avatar-upload"
-            type="file"
-            onChange={handleAvatarChange}
-          />
-          <label htmlFor="avatar-upload">
-            <IconButton
-              color="primary"
-              aria-label="upload picture"
-              component="span"
-            >
-              <PhotoCamera />
-            </IconButton>
-          </label>
+        <div className={styles.avatarContainer}>
           {avatar && (
-            <Avatar
-              src={URL.createObjectURL(avatar)}
-              sx={{ width: 100, height: 100 }}
-            />
+            <div className={styles.avatarWrapper}>
+              <Avatar
+                src={URL.createObjectURL(avatar)}
+                sx={{ width: 100, height: 100 }}
+              />
+              <IconButton
+                className={styles.removeAvatarButton}
+                onClick={() => setAvatar(null)}
+              >
+                <Close />
+              </IconButton>
+            </div>
+          )}
+          {!avatar && (
+            <>
+              <input
+                accept="image/*"
+                style={{ display: "none" }}
+                id="avatar-upload"
+                type="file"
+                onChange={handleAvatarChange}
+              />
+              <label htmlFor="avatar-upload">
+                <IconButton
+                  color="primary"
+                  aria-label="upload picture"
+                  component="span"
+                >
+                  <PhotoCamera />
+                </IconButton>
+              </label>
+            </>
+          )}
+          {avatarError && (
+            <Typography color="error" variant="body2">
+              {avatarError}
+            </Typography>
           )}
         </div>
         <TextField
@@ -119,6 +145,7 @@ export const Registration: React.FC = () => {
           label="Full Name or Nickname"
           error={Boolean(errors.username)}
           helperText={errors.username?.message}
+          fullWidth
         />
         <TextField
           {...register("email", { required: "Email is required" })}
@@ -127,6 +154,7 @@ export const Registration: React.FC = () => {
           label="Email"
           error={Boolean(errors.email)}
           helperText={errors.email?.message}
+          fullWidth
         />
         <TextField
           {...register("password", { required: "Password is required" })}
@@ -135,6 +163,7 @@ export const Registration: React.FC = () => {
           label="Password"
           error={Boolean(errors.password)}
           helperText={errors.password?.message}
+          fullWidth
         />
         <Button
           type="submit"

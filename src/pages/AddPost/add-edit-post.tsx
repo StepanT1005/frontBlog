@@ -13,6 +13,8 @@ import {
   getIsAuth,
 } from "@/redux";
 
+const allowedMimeTypes = ["image/jpeg", "image/png", "image/gif"];
+
 const AddEditPost = () => {
   const { postId } = useParams();
   const dispatch = useAppDispatch();
@@ -22,7 +24,8 @@ const AddEditPost = () => {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [tags, setTags] = useState("");
-  const [imageUrl, setImageUrl] = useState<string | null>();
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [fileError, setFileError] = useState<string | null>(null);
 
   const { postData } = useAppSelector((state) => state.post);
   const inputFileRef = useRef<HTMLInputElement>(null);
@@ -44,12 +47,12 @@ const AddEditPost = () => {
       setTitle(postData.title);
       setText(postData.text);
       setTags(postData.tags.join(" "));
-      setImageUrl(postData.imageUrl);
+      setImageUrl(postData.imageUrl ?? null);
     } else {
       setTitle("");
       setText("");
       setTags("");
-      setImageUrl("");
+      setImageUrl(null);
     }
   }, [postData]);
 
@@ -60,11 +63,15 @@ const AddEditPost = () => {
     if (!file) {
       return;
     }
+    if (!allowedMimeTypes.includes(file.type)) {
+      setFileError("Invalid file type. Only JPEG, PNG, and GIF are allowed.");
+      return;
+    }
+    setFileError(null);
     try {
       const formData = new FormData();
       formData.append("image", file);
       const { data } = await client.post("/upload", formData);
-
       setImageUrl(data.url);
     } catch (error) {
       console.warn(error);
@@ -84,6 +91,7 @@ const AddEditPost = () => {
       alert("Error creating post");
     }
   };
+
   const options = useMemo(
     () => ({
       spellChecker: false,
@@ -117,6 +125,7 @@ const AddEditPost = () => {
         onChange={handleChangeFile}
         hidden
       />
+      {fileError && <p style={{ color: "red" }}>{fileError}</p>}
       {imageUrl && (
         <>
           <Button
@@ -132,7 +141,7 @@ const AddEditPost = () => {
             alt="Uploaded"
           />
         </>
-      )}{" "}
+      )}
       <TextField
         classes={{ root: styles.title }}
         variant="standard"

@@ -90,7 +90,7 @@ export const Post = (props: PostProps) => {
           <h2
             className={clsx(styles.title, { [styles.titleFull]: isFullPost })}
           >
-            {isFullPost ? title : <Link to={`/posts/${id}`}>{title}</Link>}
+            {title}
           </h2>
           <ul className={styles.tags}>
             {tags.map((tag) => (

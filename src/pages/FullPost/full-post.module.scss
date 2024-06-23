@@ -1,0 +1,14 @@
+.markdown {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.markdown pre,
+.markdown code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
