@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 import {
   Paper,
@@ -11,18 +11,22 @@ import {
 } from "@mui/material";
 import { PhotoCamera } from "@mui/icons-material";
 import styles from "./registration.module.scss";
-import client from "../../api/api";
-import { fetchUserData } from "../../redux/stores/user/user.slice";
-import { useAppDispatch, useAppSelector } from "../../redux/redux.hooks";
-import { getIsAuth } from "../../redux/stores/user/user.selector";
+import client from "@/api/api";
+import {
+  fetchUserData,
+  useAppDispatch,
+  useAppSelector,
+  getIsAuth,
+  handleApiError,
+} from "@/redux";
 
-interface FormData {
+type FormData = {
   username: string;
   email: string;
   password: string;
-}
+};
 
-export const Registration = () => {
+export const Registration: React.FC = () => {
   const isAuth = useAppSelector(getIsAuth);
   const dispatch = useAppDispatch();
   const {
@@ -40,7 +44,7 @@ export const Registration = () => {
 
   const [avatar, setAvatar] = useState<File | null>(null);
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     if (!isValid) {
       alert("One or more fields are invalid");
       return;
@@ -54,16 +58,16 @@ export const Registration = () => {
     }
 
     try {
-      const { data } = await client.post("auth/register", formData);
-      if (data.token) {
-        window.localStorage.setItem("token", data.token);
+      const response = await client.post("auth/register", formData);
+      const { token } = response.data;
+      if (token) {
+        window.localStorage.setItem("token", token);
         dispatch(fetchUserData());
         return <Navigate to="/" />;
       }
       alert("Registration failed");
     } catch (error) {
-      console.error("Registration error:", error);
-      alert("Registration failed");
+      dispatch(handleApiError(error));
     }
   };
 
@@ -107,31 +111,30 @@ export const Registration = () => {
           )}
         </div>
         <TextField
-          {...register("username")}
+          {...register("username", {
+            required: "Full Name or Nickname is required",
+          })}
           type="text"
           className={styles.field}
           label="Full Name or Nickname"
           error={Boolean(errors.username)}
           helperText={errors.username?.message}
-          required
         />
         <TextField
-          {...register("email")}
+          {...register("email", { required: "Email is required" })}
           type="email"
           className={styles.field}
           label="Email"
           error={Boolean(errors.email)}
           helperText={errors.email?.message}
-          required
         />
         <TextField
-          {...register("password")}
+          {...register("password", { required: "Password is required" })}
           type="password"
           className={styles.field}
           label="Password"
           error={Boolean(errors.password)}
           helperText={errors.password?.message}
-          required
         />
         <Button
           type="submit"

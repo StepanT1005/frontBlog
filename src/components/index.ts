@@ -7,3 +7,4 @@ export * from "./Sidebar/sidebar";
 export * from "./SideBlock/side-block";
 export * from "./TagsBlock/tags-block";
 export * from "./UserInfo/user-info";
+export * from "./Notification/notification";

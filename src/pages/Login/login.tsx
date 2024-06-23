@@ -10,10 +10,14 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import client from "../../api/api";
-import { fetchUserData } from "../../redux/stores/user/user.slice";
-import { useAppDispatch, useAppSelector } from "../../redux/redux.hooks";
-import { getIsAuth } from "../../redux/stores/user/user.selector";
+import client from "@/api/api";
+import {
+  fetchUserData,
+  useAppDispatch,
+  useAppSelector,
+  getIsAuth,
+  handleApiError,
+} from "@/redux";
 import styles from "./login.module.scss";
 
 interface FormData {
@@ -35,10 +39,14 @@ export const Login = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
 
   const onSubmit = async (formData: FormData) => {
-    const { data } = await client.post("auth/login", formData);
-    if (data.token) {
-      localStorage.setItem("token", data.token);
-      dispatch(fetchUserData());
+    try {
+      const { data } = await client.post("auth/login", formData);
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        dispatch(fetchUserData());
+      }
+    } catch (error) {
+      dispatch(handleApiError(error));
     }
   };
 

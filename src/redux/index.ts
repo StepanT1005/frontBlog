@@ -8,3 +8,5 @@ export * from "./stores/posts/posts.slice";
 export * from "./stores/post/post.slice";
 export * from "./stores/post/post.selector";
 export * from "./stores/comments/comments.slice";
+export * from "./stores/notification/notification.slice";
+export * from "./error-handler.thunk";
