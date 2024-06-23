@@ -47,7 +47,7 @@ export const AddComment = (props: AddCommentProps) => {
       <div className={styles.root}>
         <Avatar
           classes={{ root: styles.avatar }}
-          src={userData?.avatarUrl || DEFAULT_AVATAR}
+          src={`${BASE_URL}/${userData?.avatarUrl}` || DEFAULT_AVATAR}
         />
         <div className={styles.form}>
           <div>
