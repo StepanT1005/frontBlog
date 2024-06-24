@@ -15,6 +15,9 @@ export const AddComment = (props: AddCommentProps) => {
   const userData = useAppSelector((state) => state.user.userData);
   const [text, setText] = useState("");
   const [socket, setSocket] = useState<Socket | null>(null);
+  const avatarLink = userData?.avatarUrl
+    ? `${BASE_URL}${userData?.avatarUrl}`
+    : DEFAULT_AVATAR;
 
   useEffect(() => {
     const newSocket = io(BASE_URL);
@@ -45,10 +48,7 @@ export const AddComment = (props: AddCommentProps) => {
   return (
     <>
       <div className={styles.root}>
-        <Avatar
-          classes={{ root: styles.avatar }}
-          src={`${BASE_URL}${userData?.avatarUrl}` || DEFAULT_AVATAR}
-        />
+        <Avatar classes={{ root: styles.avatar }} src={avatarLink} />
         <div className={styles.form}>
           <div>
             <TextField

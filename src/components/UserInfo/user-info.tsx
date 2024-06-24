@@ -9,12 +9,10 @@ type UserInfoProps = {
 
 export const UserInfo = (props: UserInfoProps) => {
   const { avatarUrl, username } = props;
+  const avatarLink = avatarUrl ? `${BASE_URL}${avatarUrl}` : DEFAULT_AVATAR;
   return (
     <div className={styles.root}>
-      <Avatar
-        alt={username}
-        src={`${BASE_URL}${avatarUrl}` || DEFAULT_AVATAR}
-      />
+      <Avatar alt={username} src={avatarLink} />
 
       <div className={styles.userDetails}>
         <span className={styles.userName}>{username}</span>
