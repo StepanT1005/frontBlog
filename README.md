@@ -1,6 +1,6 @@
 # React + TypeScript + Vite
 
-**[https://s-project-blog-app.vercel.app/](https://s-project-blog-app.vercel.app/)
+**[http://s-t-project.online/](http://s-t-project.online/)
 **
 
 # Blog Application
